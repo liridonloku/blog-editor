@@ -7,18 +7,17 @@ interface Props {}
 const Login: React.FC<Props> = () => {
   const [error, seterror] = useState("");
   const { register, handleSubmit } = useForm();
+
   const onSubmit = async (e: any) => {
-    console.log(e.email, e.password);
     try {
-      const response = await axios.post(
-        "https://stark-bastion-85808.herokuapp.com/users/login",
-        `email=${e.email}&password=${e.password}`,
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
+      const response = await axios({
+        method: "post",
+        url: "https://stark-bastion-85808.herokuapp.com/users/login",
+        data: `email=${e.email}&password=${e.password}`,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
       const data = response.data;
       console.log(data);
     } catch (err: any) {
@@ -62,7 +61,7 @@ const Login: React.FC<Props> = () => {
           </button>
         </div>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className="text-danger">{error}</p>}
     </div>
   );
 };
