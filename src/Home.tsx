@@ -1,9 +1,14 @@
 import React from "react";
+import Header from "./Header";
 
 interface Props {}
 
 const Home: React.FC<Props> = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
 export default Home;
