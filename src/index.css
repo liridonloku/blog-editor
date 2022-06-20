@@ -1,0 +1,13 @@
+header {
+  z-index: 2000;
+}
+
+.card {
+  min-width: 280px;
+  max-width: 500px;
+}
+
+.card > img {
+  height: 250px;
+  object-fit: cover;
+}
