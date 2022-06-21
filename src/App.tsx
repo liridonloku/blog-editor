@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Form from "./components/Form";
 import axios from "axios";
+import SinglePost from "./components/Post";
 
 export interface User {
   firstName: string;
@@ -48,6 +49,10 @@ const App: React.FC = () => {
         <Route path="/" element={<Home user={user} logOut={logOut} />} />
         <Route path="/login" element={<Login user={user} />} />
         <Route path="/form" element={<Form user={user} logOut={logOut} />} />
+        <Route
+          path="/:id"
+          element={<SinglePost user={user} logOut={logOut} />}
+        />
       </Routes>
     </BrowserRouter>
   );

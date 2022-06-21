@@ -1,6 +1,7 @@
 import React from "react";
 import { Post } from "./Cards";
 import defaultImage from "../assets/images.png";
+import { Link } from "react-router-dom";
 
 interface Props {
   post: Post;
@@ -22,7 +23,11 @@ const Card: React.FC<Props> = ({ post }) => {
           alt="Post"
         />
         <div className="card-body">
-          <h5 className="card-title">{post.title}</h5>
+          <h5 className="card-title">
+            <Link className="navbar-brand text-dark" to={`./${post._id}`}>
+              {post.title}
+            </Link>
+          </h5>
           <p className="card-text">
             {post.published ? "Published" : "Not published"}
           </p>
