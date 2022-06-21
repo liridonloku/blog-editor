@@ -50,6 +50,22 @@ const SinglePost: React.FC<Props> = ({ user, logOut }) => {
           </div>
           <h1 className="text-center mb-3">{post.title}</h1>
           {htmlFrom(post.article)}
+          <p className="text-center">
+            Status:{" "}
+            {post.published ? (
+              <span className="text-green">Published</span>
+            ) : (
+              <span className="text-danger">NOT Published</span>
+            )}
+          </p>
+          <div className="d-flex justify-content-center mb-3">
+            {post.published ? (
+              <button className="btn btn-secondary mx-2">Un-Publish</button>
+            ) : (
+              <button className="btn btn-success mx-2">Publish</button>
+            )}
+            <button className="btn btn-danger mx-2">Delete</button>
+          </div>
         </div>
       )}
     </>
