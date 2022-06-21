@@ -27,13 +27,14 @@ const Form: React.FC<Props> = ({ user, logOut }) => {
         const response = await axios({
           method: "post",
           url: "https://stark-bastion-85808.herokuapp.com/api/posts",
-          data: `title=${data.title}&poster=${
-            data.poster
-          }&article=${editorRef.current.getContent()}&published=${
-            data.published
-          }`,
+          data: {
+            title: data.title,
+            poster: data.poster,
+            article: editorRef.current.getContent(),
+            published: data.published,
+          },
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Type": "multipart/form-data",
             Authorization: `${user.token}`,
           },
         });

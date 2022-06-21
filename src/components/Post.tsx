@@ -37,7 +37,6 @@ const SinglePost: React.FC<Props> = ({ user, logOut }) => {
       USE_PROFILES: { html: true },
     });
     const html = parse(cleanHtmlString);
-    console.log(htmlString);
     return html;
   };
 
