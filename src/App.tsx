@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import Form from "./components/Form";
 import axios from "axios";
 
 export interface User {
   firstName: String;
   lastName: String;
   email: String;
+  token: String;
 }
 
 const App: React.FC = () => {
@@ -25,7 +27,7 @@ const App: React.FC = () => {
               Authorization: token,
             },
           });
-          setuser(response.data);
+          setuser({ ...response.data, token });
         } catch (err) {
           console.log(err);
           localStorage.removeItem("blogToken");
@@ -45,7 +47,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home user={user} logOut={logOut} />} />
         <Route path="/login" element={<Login user={user} />} />
-        {/* <Route path="/post-form" element={<Form/>} />*/}
+        <Route path="/form" element={<Form user={user} logOut={logOut} />} />
       </Routes>
     </BrowserRouter>
   );

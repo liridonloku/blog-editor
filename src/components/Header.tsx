@@ -12,7 +12,7 @@ const Header: React.FC<Props> = ({ user, logOut }) => {
     <header className="mb-3 position-sticky top-0">
       <nav className="navbar navbar-light bg-light navbar-expand-lg shadow-sm">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="#">
+          <Link className="navbar-brand" to="/">
             Blog Editor
           </Link>
           <button
@@ -42,7 +42,7 @@ const Header: React.FC<Props> = ({ user, logOut }) => {
                 <Link
                   className="nav-link btn btn-primary text-light"
                   aria-current="page"
-                  to="#"
+                  to="/form"
                 >
                   New Post
                 </Link>

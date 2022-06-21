@@ -21,19 +21,20 @@ const Login: React.FC<Props> = ({ user }) => {
     }
   });
 
-  const onSubmit = async (e: any) => {
+  const onSubmit = async (data: any, e: any) => {
+    e.preventDefault();
     try {
       const response = await axios({
         method: "post",
         url: "https://stark-bastion-85808.herokuapp.com/users/login",
-        data: `email=${e.email}&password=${e.password}`,
+        data: `email=${data.email}&password=${data.password}`,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
       const token = response.data.token;
       localStorage.setItem("blogToken", `bearer ${token}`);
-      navigate("/");
+      navigate("/", { replace: true });
     } catch (err: any) {
       if (err.response.data === "Unauthorized") {
         seterror("Wrong email or password!");
@@ -41,6 +42,7 @@ const Login: React.FC<Props> = ({ user }) => {
         seterror(err.response.data);
       }
     }
+    e.target.reset();
   };
 
   return (
