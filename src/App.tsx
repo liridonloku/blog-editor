@@ -5,7 +5,7 @@ import Login from "./components/Login";
 import axios from "axios";
 
 const App: React.FC = () => {
-  const [user, setuser] = useState({});
+  const [user, setuser] = useState<null | {}>(null);
 
   useEffect(() => {
     const getUser = async () => {
@@ -29,10 +29,15 @@ const App: React.FC = () => {
     getUser();
   }, []);
 
+  const logOut = () => {
+    localStorage.removeItem("blogToken");
+    setuser(null);
+  };
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home user={user} />} />
+        <Route path="/" element={<Home user={user} logOut={logOut} />} />
         <Route path="/login" element={<Login user={user} />} />
         {/* <Route path="/post-form" element={<Form/>} />*/}
       </Routes>

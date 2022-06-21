@@ -4,7 +4,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 interface Props {
-  user: {};
+  user: null | {};
 }
 
 const Login: React.FC<Props> = ({ user }) => {
@@ -32,6 +32,7 @@ const Login: React.FC<Props> = ({ user }) => {
       });
       const token = response.data.token;
       localStorage.setItem("blogToken", `bearer ${token}`);
+      navigate("/");
     } catch (err: any) {
       if (err.response.data === "Unauthorized") {
         seterror("Wrong email or password!");

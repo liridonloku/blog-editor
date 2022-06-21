@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 interface Props {
-  user: {};
+  user: null | {};
+  logOut: Function;
 }
 
-const Header: React.FC<Props> = ({ user }) => {
+const Header: React.FC<Props> = ({ user, logOut }) => {
   return (
     <header className="mb-3 position-sticky top-0">
       <nav className="navbar navbar-light bg-light navbar-expand-lg shadow-sm">
@@ -40,9 +41,9 @@ const Header: React.FC<Props> = ({ user }) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="#">
+                <p className="nav-link" onClick={() => logOut()}>
                   Log Out
-                </Link>
+                </p>
               </li>
             </ul>
           </div>
