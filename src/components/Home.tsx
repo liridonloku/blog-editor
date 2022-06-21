@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import Header from "./Header";
 import Cards from "./Cards";
 import { useLocation, useNavigate } from "react-router-dom";
+import { User } from "../App";
 
 interface Props {
-  user: null | {};
+  user: null | User;
   logOut: Function;
 }
 

@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { User } from "../App";
 
 interface Props {
-  user: null | {};
+  user: null | User;
   logOut: Function;
 }
 
@@ -30,20 +31,30 @@ const Header: React.FC<Props> = ({ user, logOut }) => {
             id="navbarNav"
           >
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="#">
+              {user && (
+                <li className="nav-item mb-1 mx-1">
+                  <Link className="nav-link" aria-current="page" to="#">
+                    {user.firstName} {user.lastName} | {user.email}
+                  </Link>
+                </li>
+              )}
+              <li className="nav-item mb-2 mx-1">
+                <Link
+                  className="nav-link btn btn-primary text-light"
+                  aria-current="page"
+                  to="#"
+                >
                   New Post
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="#">
-                  Log In
-                </Link>
-              </li>
-              <li className="nav-item">
-                <p className="nav-link" onClick={() => logOut()}>
+              <li className="nav-item mb-2 mx-1">
+                <Link
+                  className="nav-link btn btn-danger text-light"
+                  to="#"
+                  onClick={() => logOut()}
+                >
                   Log Out
-                </p>
+                </Link>
               </li>
             </ul>
           </div>

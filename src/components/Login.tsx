@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { User } from "../App";
 
 interface Props {
-  user: null | {};
+  user: null | User;
 }
 
 const Login: React.FC<Props> = ({ user }) => {

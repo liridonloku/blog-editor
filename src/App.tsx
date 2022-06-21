@@ -4,8 +4,14 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import axios from "axios";
 
+export interface User {
+  firstName: String;
+  lastName: String;
+  email: String;
+}
+
 const App: React.FC = () => {
-  const [user, setuser] = useState<null | {}>(null);
+  const [user, setuser] = useState<null | User>(null);
 
   useEffect(() => {
     const getUser = async () => {

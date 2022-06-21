@@ -13,9 +13,7 @@ const Cards: React.FC<Props> = () => {
   };
   return (
     <main>
-      <div className="container">
-        <div className="card-group">{renderSampleCards()}</div>
-      </div>
+      <div className="container d-flex flex-wrap">{renderSampleCards()}</div>
     </main>
   );
 };

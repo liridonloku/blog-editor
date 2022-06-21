@@ -6,9 +6,8 @@ header {
   z-index: 2000;
 }
 
-.card {
-  min-width: 280px;
-  max-width: 500px;
+.logout {
+  cursor: pointer;
 }
 
 .card > img {
