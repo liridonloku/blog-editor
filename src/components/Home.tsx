@@ -2,12 +2,14 @@ import React from "react";
 import Header from "./Header";
 import Cards from "./Cards";
 
-interface Props {}
+interface Props {
+  user: {};
+}
 
-const Home: React.FC<Props> = () => {
+const Home: React.FC<Props> = ({ user }) => {
   return (
     <>
-      <Header />
+      <Header user={user} />
       <Cards />
     </>
   );

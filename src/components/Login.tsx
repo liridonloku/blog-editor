@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
-interface Props {}
+interface Props {
+  user: {};
+}
 
-const Login: React.FC<Props> = () => {
+const Login: React.FC<Props> = ({ user }) => {
   const [error, seterror] = useState("");
   const { register, handleSubmit } = useForm();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user && location.pathname.includes("/login")) {
+      navigate("/");
+    }
+  });
 
   const onSubmit = async (e: any) => {
     try {
@@ -18,8 +30,8 @@ const Login: React.FC<Props> = () => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
-      const data = response.data;
-      console.log(data);
+      const token = response.data.token;
+      localStorage.setItem("blogToken", `bearer ${token}`);
     } catch (err: any) {
       if (err.response.data === "Unauthorized") {
         seterror("Wrong email or password!");

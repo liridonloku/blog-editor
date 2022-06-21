@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-interface Props {}
+interface Props {
+  user: {};
+}
 
-const Header: React.FC<Props> = () => {
+const Header: React.FC<Props> = ({ user }) => {
   return (
     <header className="mb-3 position-sticky top-0">
       <nav className="navbar navbar-light bg-light navbar-expand-lg shadow-sm">
