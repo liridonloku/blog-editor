@@ -1,19 +1,55 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { User } from "../App";
 import Card from "./Card";
 
-interface Props {}
+interface Props {
+  user: null | User;
+}
 
-const Cards: React.FC<Props> = () => {
-  const renderSampleCards = () => {
-    const cards = [];
-    for (let i = 0; i < 5; i++) {
-      cards.push(<Card key={i} />);
+interface Author {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+export interface Post {
+  _id: string;
+  title: string;
+  poster: string;
+  article: string;
+  published: boolean;
+  date: Date;
+  author: Author;
+}
+
+const Cards: React.FC<Props> = ({ user }) => {
+  const [posts, setposts] = useState<Array<Post>>([]);
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const response = await axios({
+        method: "get",
+        url: "https://stark-bastion-85808.herokuapp.com/api/posts/all",
+        headers: {
+          Authorization: `${user?.token}`,
+        },
+      });
+      setposts(response.data);
+    };
+    if (user?.token) {
+      getPosts();
     }
-    return cards;
+  }, [user?.token]);
+
+  const renderCards = () => {
+    return posts.map((post) => <Card key={post._id} post={post} />);
   };
   return (
     <main>
-      <div className="container d-flex flex-wrap">{renderSampleCards()}</div>
+      <div className="container-fluid d-flex flex-wrap justify-content-center">
+        {renderCards()}
+      </div>
     </main>
   );
 };

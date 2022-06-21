@@ -21,7 +21,7 @@ const Home: React.FC<Props> = ({ user, logOut }) => {
   return (
     <>
       <Header user={user} logOut={logOut} />
-      <Cards />
+      <Cards user={user} />
     </>
   );
 };

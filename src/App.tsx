@@ -6,10 +6,10 @@ import Form from "./components/Form";
 import axios from "axios";
 
 export interface User {
-  firstName: String;
-  lastName: String;
-  email: String;
-  token: String;
+  firstName: string;
+  lastName: string;
+  email: string;
+  token: string;
 }
 
 const App: React.FC = () => {
