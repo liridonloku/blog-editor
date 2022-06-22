@@ -7,6 +7,7 @@ import { Post } from "./Cards";
 import parse from "html-react-parser";
 import dompurify from "dompurify";
 import defaultImage from "../assets/images.png";
+import Comments from "./Comments";
 
 interface Props {
   user: null | User;
@@ -84,7 +85,7 @@ const SinglePost: React.FC<Props> = ({ user, logOut }) => {
     <>
       <Header user={user} logOut={logOut} />
       {post && (
-        <div className="container-sm">
+        <div className="container-sm mb-4">
           <div className="post-image d-flex justify-content-center mb-3">
             <img src={post.poster || defaultImage} alt="" />
           </div>
@@ -118,6 +119,8 @@ const SinglePost: React.FC<Props> = ({ user, logOut }) => {
               Delete
             </button>
           </div>
+          <hr />
+          <Comments post={post} user={user} />
         </div>
       )}
     </>
