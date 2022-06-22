@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { User } from "../App";
 import Header from "./Header";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Post } from "./Cards";
 import parse from "html-react-parser";
 import dompurify from "dompurify";
@@ -16,6 +16,8 @@ interface Props {
 const SinglePost: React.FC<Props> = ({ user, logOut }) => {
   const [post, setpost] = useState<null | Post>();
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getPost = async () => {
@@ -61,6 +63,23 @@ const SinglePost: React.FC<Props> = ({ user, logOut }) => {
     }
   };
 
+  const deletePost = async () => {
+    try {
+      if (user?.token) {
+        await axios({
+          method: "delete",
+          url: `https://stark-bastion-85808.herokuapp.com/api/posts/${id}`,
+          headers: {
+            Authorization: user.token,
+          },
+        });
+        navigate("/", { replace: true });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <Header user={user} logOut={logOut} />
@@ -95,7 +114,9 @@ const SinglePost: React.FC<Props> = ({ user, logOut }) => {
                 Publish
               </button>
             )}
-            <button className="btn btn-danger mx-2">Delete</button>
+            <button className="btn btn-danger mx-2" onClick={deletePost}>
+              Delete
+            </button>
           </div>
         </div>
       )}
