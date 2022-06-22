@@ -56,13 +56,17 @@ const Comments: React.FC<Props> = ({ post, user }) => {
   const deleteComment = async (id: string) => {
     try {
       if (user?.token) {
-        await axios({
+        const response = await axios({
           method: "delete",
           url: `https://stark-bastion-85808.herokuapp.com/api/posts/${post._id}/comments/${id}`,
           headers: {
             Authorization: user?.token,
           },
         });
+        console.log(response.data);
+        setcomments(
+          comments.filter((comment) => comment._id.toString() !== id)
+        );
       }
     } catch (err) {
       console.error(err);
