@@ -40,6 +40,27 @@ const SinglePost: React.FC<Props> = ({ user, logOut }) => {
     return html;
   };
 
+  const changePublishedStatus = async () => {
+    try {
+      if (user?.token) {
+        const response = await axios({
+          method: "put",
+          url: `https://stark-bastion-85808.herokuapp.com/api/posts/${id}`,
+          data: {
+            ...post,
+            published: !post?.published,
+          },
+          headers: {
+            Authorization: user.token,
+          },
+        });
+        setpost(response.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <Header user={user} logOut={logOut} />
@@ -53,16 +74,26 @@ const SinglePost: React.FC<Props> = ({ user, logOut }) => {
           <p className="text-center">
             Status:{" "}
             {post.published ? (
-              <span className="text-green">Published</span>
+              <span className="text-success fw-bold">Published</span>
             ) : (
-              <span className="text-danger">NOT Published</span>
+              <span className="text-danger fw-bold">NOT Published</span>
             )}
           </p>
           <div className="d-flex justify-content-center mb-3">
             {post.published ? (
-              <button className="btn btn-secondary mx-2">Un-Publish</button>
+              <button
+                className="btn btn-secondary mx-2"
+                onClick={changePublishedStatus}
+              >
+                Un-Publish
+              </button>
             ) : (
-              <button className="btn btn-success mx-2">Publish</button>
+              <button
+                className="btn btn-success mx-2"
+                onClick={changePublishedStatus}
+              >
+                Publish
+              </button>
             )}
             <button className="btn btn-danger mx-2">Delete</button>
           </div>

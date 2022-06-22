@@ -54,7 +54,7 @@ const Form: React.FC<Props> = ({ user, logOut }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
             <label htmlFor="title" className="form-label">
-              Short Title
+              Title
             </label>
             <input
               type="text"
