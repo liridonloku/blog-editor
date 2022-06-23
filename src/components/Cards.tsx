@@ -47,6 +47,7 @@ const Cards: React.FC<Props> = ({ user }) => {
   };
   return (
     <main>
+      <h1 className="text-center">Posts</h1>
       <div className="container-fluid d-flex flex-wrap justify-content-center">
         {renderCards()}
       </div>

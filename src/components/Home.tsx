@@ -3,6 +3,7 @@ import Header from "./Header";
 import Cards from "./Cards";
 import { useLocation, useNavigate } from "react-router-dom";
 import { User } from "../App";
+import Footer from "./Footer";
 
 interface Props {
   user: null | User;
@@ -22,6 +23,7 @@ const Home: React.FC<Props> = ({ user, logOut }) => {
     <>
       <Header user={user} logOut={logOut} />
       <Cards user={user} />
+      <Footer />
     </>
   );
 };

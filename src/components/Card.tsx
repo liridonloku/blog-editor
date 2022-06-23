@@ -28,10 +28,12 @@ const Card: React.FC<Props> = ({ post }) => {
               {post.title}
             </Link>
           </h5>
-          <p className="card-text">
-            {post.published ? "Published" : "Not published"}
-          </p>
-          <p className="card-text">
+          {post.published ? (
+            <p className="card-text text-success">Published</p>
+          ) : (
+            <p className="card-text text-danger">Not published</p>
+          )}
+          <p className="card-text text-end">
             <small className="text-muted">
               {new Date(post.date).toUTCString()}
             </small>

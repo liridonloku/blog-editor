@@ -105,7 +105,7 @@ const SinglePost: React.FC<Props> = ({ user, logOut }) => {
                 className="btn btn-secondary mx-2"
                 onClick={changePublishedStatus}
               >
-                Un-Publish
+                Unpublish
               </button>
             ) : (
               <button
