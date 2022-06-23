@@ -1,5 +1,6 @@
 body {
   overflow-anchor: none;
+  min-height: 100vh;
 }
 
 header {
