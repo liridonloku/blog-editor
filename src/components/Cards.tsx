@@ -46,7 +46,7 @@ const Cards: React.FC<Props> = ({ user }) => {
     return posts.map((post) => <Card key={post._id} post={post} />);
   };
   return (
-    <main>
+    <main className="flex-grow-1">
       <h1 className="text-center">Posts</h1>
       <div className="container-fluid d-flex flex-wrap justify-content-center">
         {renderCards()}
